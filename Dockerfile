@@ -11,7 +11,7 @@ RUN apk add --no-cache \
     curl \
     bash
 
-RUN pip install yt-dlp openai-whisper
+RUN pip install yt-dlp
 
 USER node
 
