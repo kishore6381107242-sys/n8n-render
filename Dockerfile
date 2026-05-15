@@ -1,9 +1,14 @@
-FROM jrottenberg/ffmpeg:6.0-alpine
+FROM n8nio/n8n:latest
 
-RUN apk add --no-cache nodejs npm
+USER root
 
-RUN npm install -g n8n
+RUN apk update && \
+    apk add --no-cache ffmpeg python3 py3-pip && \
+    pip3 install edge-tts --break-system-packages && \
+    rm -rf /var/cache/apk/*
+
+RUN mkdir -p /tmp/videos && chmod 777 /tmp/videos
+
+USER node
 
 EXPOSE 5678
-
-CMD ["n8n"]
