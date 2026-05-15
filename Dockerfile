@@ -1,9 +1,9 @@
-FROM n8nio/n8n:latest
+FROM jrottenberg/ffmpeg:6.0-alpine
 
-USER root
+RUN apk add --no-cache nodejs npm
 
-RUN apt-get update && apt-get install -y ffmpeg
-
-USER node
+RUN npm install -g n8n
 
 EXPOSE 5678
+
+CMD ["n8n"]
